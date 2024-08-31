@@ -37,7 +37,7 @@ int main() {
             for (size_t y = 0; y < 5; y++) {
                 sf::CircleShape circle(30.0);
                 circle.setFillColor(sf::Color(100, 250, 50));
-                circle.setPosition(x * 65.0, y * 65.0);
+                circle.setPosition(y % 2 == 0 ? x * 65.0 : x * 65.0 + 30.0, y * 65.0);
                 window.draw(circle);
             }
         }
