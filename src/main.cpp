@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/Color.hpp>
+
+#include <orb.hpp>
 
 int main() {
     // create the window
@@ -32,13 +32,22 @@ int main() {
         window.draw(circle2);
         */
 
-        /* Loop circles */
+        /* Loop circles
         for (size_t x = 0; x < 5; x++) {
             for (size_t y = 0; y < 5; y++) {
                 sf::CircleShape circle(30.0);
                 circle.setFillColor(sf::Color(100, 250, 50));
                 circle.setPosition(y % 2 == 0 ? x * 65.0 : x * 65.0 + 30.0, y * 65.0);
                 window.draw(circle);
+            }
+        }
+        */
+
+        /* Loop circles using custom class */
+        for (size_t x = 0; x < 5; x++) {
+            for (size_t y = 0; y < 5; y++) {
+                Orb orb(x, y);
+                window.draw(orb);
             }
         }
 
