@@ -4,6 +4,7 @@
 
 class Orb final : public sf::CircleShape {
 public:
+    Orb() = default;
     Orb(size_t x, size_t y);
 
 private:

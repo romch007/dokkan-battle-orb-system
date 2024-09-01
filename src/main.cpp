@@ -1,8 +1,16 @@
+#include <array>
 #include <SFML/Graphics.hpp>
 
 #include <orb.hpp>
 
 int main() {
+    std::array<std::array<Orb, 5>, 5> board;
+    for (size_t x = 0; x < 5; x++) {
+        for (size_t y = 0; y < 5; y++) {
+            board[y][x] = Orb(x, y);
+        }
+    }
+
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "Dokkan Battle");
 
@@ -21,32 +29,9 @@ int main() {
 
         // draw everything here...
 
-        /* First circles
-        sf::CircleShape circle(30.0);
-        circle.setFillColor(sf::Color(100, 250, 50));
-        window.draw(circle);
-
-        sf::CircleShape circle2(30.0);
-        circle2.setFillColor(sf::Color(230, 20, 20));
-        circle2.setPosition(0.0, 65.0);
-        window.draw(circle2);
-        */
-
-        /* Loop circles
-        for (size_t x = 0; x < 5; x++) {
-            for (size_t y = 0; y < 5; y++) {
-                sf::CircleShape circle(30.0);
-                circle.setFillColor(sf::Color(100, 250, 50));
-                circle.setPosition(y % 2 == 0 ? x * 65.0 : x * 65.0 + 30.0, y * 65.0);
-                window.draw(circle);
-            }
-        }
-        */
-
         /* Loop circles using custom class */
-        for (size_t x = 0; x < 5; x++) {
-            for (size_t y = 0; y < 5; y++) {
-                Orb orb(x, y);
+        for (const auto& row : board) {
+            for (const auto& orb : row) {
                 window.draw(orb);
             }
         }
