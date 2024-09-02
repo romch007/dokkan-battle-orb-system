@@ -1,3 +1,4 @@
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <array>
 #include <SFML/Graphics.hpp>
@@ -38,6 +39,10 @@ int main() {
         const auto mousePos = sf::Mouse::getPosition(window);
         if (mousePos.y >= top && mousePos.y <= bottom && mousePos.x >= 0 && mousePos.x <= right) {
             std::cout << "Touching first orbs\n";
+            size_t index = mousePos.x / (5 + Orb::RADIUS * 2); // 5 is here for the gap between the orbs
+            index = index > maxIndex ? maxIndex : index; // security
+            Orb& touchedOrb = board[maxIndex][index];
+            touchedOrb.setFillColor(sf::Color::White);
         } else {
             std::cout << "Not touching\n";
         }
