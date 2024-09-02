@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/Color.hpp>
 
@@ -14,9 +16,14 @@ public:
 
     void fade();
     void opacify();
+    const sf::Color& color() const;
+    const size_t& getX() const;
+    const size_t& getY() const;
 
 private:
     size_t m_x, m_y;
     sf::Color m_color = Color::NONE;
 
 };
+
+using Board = std::array<std::array<Orb, 5>, 5>;

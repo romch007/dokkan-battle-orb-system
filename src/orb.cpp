@@ -26,3 +26,15 @@ void Orb::opacify() {
                 255
     ));
 }
+
+const sf::Color& Orb::color() const {
+    return m_color;
+}
+
+const size_t& Orb::getX() const {
+    return m_x;
+}
+
+const size_t& Orb::getY() const {
+    return m_y;
+}

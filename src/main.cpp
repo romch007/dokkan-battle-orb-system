@@ -1,13 +1,12 @@
-#include <array>
-
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Graphics.hpp>
 
 #include <orb.hpp>
+#include <algorithm.hpp>
 
 int main() {
-    std::array<std::array<Orb, 5>, 5> board;
+    Board board;
     for (size_t x = 0; x < 5; x++) {
         for (size_t y = 0; y < 5; y++) {
             board[y][x] = Orb(x, y);
@@ -57,16 +56,21 @@ int main() {
             }
         }
 
-        // draw everything here...
-
         /* Loop circles using custom class */
         for (size_t y = 0; y < board.size(); y++) {
             auto& row = board[y];
             for (size_t x = 0; x < row.size(); x++) {
                 Orb& orb = row[x];
-                if (y == board.size() - 1 && index != -1 && x == index) // if last row and user is hovering this orb
-                    orb.opacify();
                 window.draw(orb);
+            }
+        }
+
+        if (index != -1) {
+            std::vector<const Orb*> orbs = findLongestPath(board, &board[maxIndex][index]);
+            for (const Orb* orb : orbs) {
+                Orb o = *orb;
+                o.opacify();
+                window.draw(o);
             }
         }
 
