@@ -10,6 +10,7 @@ public:
     inline static const sf::Color RED = sf::Color(0xC2212AFF);
     inline static const sf::Color BLUE = sf::Color(0x3B3CDDFF);
     inline static const sf::Color PURPLE = sf::Color(0xB52EDDFF);
+    inline static const sf::Color NONE = sf::Color(0x00000000);
 
     inline static sf::Color getRandomColor();
 
