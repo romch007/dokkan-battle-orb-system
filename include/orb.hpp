@@ -7,8 +7,9 @@ public:
     Orb() = default;
     Orb(size_t x, size_t y);
 
-private:
     static const float RADIUS;
+
+private:
     size_t m_x, m_y;
 
 };

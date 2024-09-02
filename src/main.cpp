@@ -1,6 +1,8 @@
+#include <SFML/Window/Mouse.hpp>
 #include <array>
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
 #include <orb.hpp>
 
 int main() {
@@ -10,6 +12,11 @@ int main() {
             board[y][x] = Orb(x, y);
         }
     }
+
+    const size_t maxIndex = board.size() - 1;
+    const float top = board[maxIndex][0].getPosition().y;
+    const float bottom = top + Orb::RADIUS * 2;
+    const float right = board[maxIndex][board[maxIndex].size() - 1].getPosition().x + Orb::RADIUS * 2;
 
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "Dokkan Battle");
@@ -26,6 +33,14 @@ int main() {
 
         // clear the window with black color
         window.clear(sf::Color::Black);
+
+        // detect collisions
+        const auto mousePos = sf::Mouse::getPosition(window);
+        if (mousePos.y >= top && mousePos.y <= bottom && mousePos.x >= 0 && mousePos.x <= right) {
+            std::cout << "Touching first orbs\n";
+        } else {
+            std::cout << "Not touching\n";
+        }
 
         // draw everything here...
 
