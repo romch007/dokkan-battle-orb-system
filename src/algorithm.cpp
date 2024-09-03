@@ -17,7 +17,7 @@ void dfs(const Board& board, const Orb* orb, const sf::Color color, std::vector<
         right = &board[y][x];
     } else {
         left = &board[y][x];
-        right = x < board[y].size() ? &board[y][x + 1] : nullptr;
+        right = x < board[y].size() - 1 ? &board[y][x + 1] : nullptr;
     }
 
     // if the first orb is a rainbow one
