@@ -20,8 +20,14 @@ void dfs(const Board& board, const Orb* orb, const sf::Color color, std::vector<
         right = x < board[y].size() ? &board[y][x + 1] : nullptr;
     }
 
-    dfs(board, left, color, currentPath, longestPath);
-    dfs(board, right, color, currentPath, longestPath);
+    // if the first orb is a rainbow one
+    if (color == Color::RAINBOW) {
+        dfs(board, left, left ? left->color() : color, currentPath, longestPath);
+        dfs(board, right, right ? right->color() : color, currentPath, longestPath);
+    } else {
+        dfs(board, left, color, currentPath, longestPath);
+        dfs(board, right, color, currentPath, longestPath);
+    }
 
     if (currentPath.size() > longestPath.size())
         longestPath = currentPath;
