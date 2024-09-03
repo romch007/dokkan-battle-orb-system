@@ -5,7 +5,7 @@ void dfs(const Board& board, const Orb* orb, const sf::Color color, std::vector<
 
     size_t x = orb->getX();
     size_t y = orb->getY();
-    if (orb->color() != color)
+    if (orb->color() != Color::RAINBOW && orb->color() != color)
         return;
 
     currentPath.push_back(orb);
