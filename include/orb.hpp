@@ -16,9 +16,13 @@ public:
 
     void fade();
     void opacify();
+    void burst();
     const sf::Color& color() const;
     const size_t& getX() const;
     const size_t& getY() const;
+
+    bool operator==(const Orb&) const;
+    bool operator!=(const Orb&) const;
 
 private:
     size_t m_x, m_y;

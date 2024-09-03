@@ -14,7 +14,7 @@ void Orb::fade() {
                 m_color.r,
                 m_color.g,
                 m_color.b,
-                100
+                70
     ));
 }
 
@@ -24,6 +24,15 @@ void Orb::opacify() {
                 m_color.g,
                 m_color.b,
                 255
+    ));
+}
+
+void Orb::burst() {
+    setFillColor(sf::Color(
+                m_color.r,
+                m_color.g,
+                m_color.b,
+                170
     ));
 }
 
@@ -37,4 +46,12 @@ const size_t& Orb::getX() const {
 
 const size_t& Orb::getY() const {
     return m_y;
+}
+
+bool Orb::operator==(const Orb& other) const {
+    return m_x == other.m_x && m_y == other.m_y && m_color == other.m_color;
+}
+
+bool Orb::operator!=(const Orb& other) const {
+    return !(*this == other);
 }

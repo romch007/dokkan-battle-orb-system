@@ -67,10 +67,38 @@ int main() {
 
         if (index != -1) {
             std::vector<const Orb*> orbs = findLongestPath(board, &board[maxIndex][index]);
+            // figure out the color of the path
+            size_t i = 0;
+            sf::Color color;
+            do {
+                color = orbs[i++]->color();
+            } while (color == Color::RAINBOW); // there cannot be only rainbow orbs in the path
+
             for (const Orb* orb : orbs) {
                 Orb o = *orb;
                 o.opacify();
                 window.draw(o);
+                // burst orbs
+                // left
+                Orb* burst = &o;
+                do {
+                    if (*burst != *orb) { // so that orbs on the path are not drawn three times
+                        burst->burst();
+                        window.draw(*burst);
+                    }
+                    size_t x = burst->getX();
+                    burst = x > 0 ? &board[orb->getY()][x - 1] : nullptr;
+                } while (burst && burst->color() == color);
+                // right
+                burst = &o;
+                do {
+                    if (*burst != *orb) { // so that orbs on the path are not drawn three times
+                        burst->burst();
+                        window.draw(*burst);
+                    }
+                    size_t x = burst->getX();
+                    burst = x < board[orb->getY()].size() - 1 ? &board[orb->getY()][x + 1] : nullptr;
+                } while (burst && burst->color() == color);
             }
         }
 
