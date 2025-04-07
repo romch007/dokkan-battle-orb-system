@@ -23,8 +23,11 @@ int main() {
     const float bottom = top + Orb::RADIUS * 2;
     const float right = board[maxIndex][board[maxIndex].size() - 1].getPosition().x + Orb::RADIUS * 2;
 
+    unsigned int height = bottom;
+    unsigned int width = right + Orb::RADIUS;
+
     // create the window
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Dokkan Battle");
+    sf::RenderWindow window(sf::VideoMode({width, height}), "Dokkan Battle", sf::Style::Close);
 
     // run the program as long as the window is open
     while (window.isOpen()) {

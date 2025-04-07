@@ -17,7 +17,7 @@ target_link_libraries(dokkan PRIVATE SFML::Graphics)
 
 install(TARGETS dokkan
     DESTINATION .
-	RUNTIME_DEPENDENCIES
+    RUNTIME_DEPENDENCIES
     PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-"
     POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
 )
