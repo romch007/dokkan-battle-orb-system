@@ -10,14 +10,20 @@ void dfs(const Board& board, const Orb* orb, const sf::Color color, std::vector<
 
     currentPath.push_back(orb);
 
-    const Orb* left;
-    const Orb* right;
-    if (y-- % 2 == 0) {
-        left = x != 0 ? &board[y][x - 1] : nullptr;
-        right = &board[y][x];
+    const Orb* left = nullptr;
+    const Orb* right = nullptr;
+    if (y % 2 == 0) {
+        if (y > 0) {
+            if (x != 0)
+                left = &board[y - 1][x - 1];
+            right = &board[y - 1][x];
+        }
     } else {
-        left = &board[y][x];
-        right = x < board[y].size() - 1 ? &board[y][x + 1] : nullptr;
+        if (y > 0) {
+            left = &board[y - 1][x];
+            if (x < board[y - 1].size() - 1)
+                right = &board[y - 1][x + 1];
+        }
     }
 
     // if the first orb is a rainbow one
