@@ -8,9 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS include/*.hpp)
 
-find_package(SFML 2.6 COMPONENTS system window graphics REQUIRED)
+find_package(SFML 3 COMPONENTS Graphics REQUIRED)
 
 include_directories(include)
 
 add_executable(dokkan ${SOURCES} ${HEADERS})
-target_link_libraries(dokkan sfml-graphics)
+target_link_libraries(dokkan PRIVATE SFML::Graphics)

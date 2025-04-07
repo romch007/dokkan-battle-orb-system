@@ -6,7 +6,11 @@ const float Orb::RADIUS = 30.0;
 Orb::Orb(size_t x, size_t y) : m_x(x), m_y(y), CircleShape(Orb::RADIUS) {
     m_color = Color::getRandomColor();
     setFillColor(m_color);
-    setPosition(y % 2 == 0 ? x * 65.0 : x * 65.0 + 30.0, y * 65.0);
+
+    float screenX = y % 2 == 0 ? x * 65.0 : x * 65.0 + 30.0;
+    float screenY = y * 65.0;
+
+    setPosition({screenX, screenY});
 }
 
 void Orb::fade() {
