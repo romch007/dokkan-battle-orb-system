@@ -5,7 +5,12 @@
 #include <orb.hpp>
 #include <algorithm.hpp>
 
+#ifdef WIN32
+#include <windows.h>
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow) {
+#else
 int main() {
+#endif
     Board board;
     for (size_t x = 0; x < 5; x++) {
         for (size_t y = 0; y < 5; y++) {
