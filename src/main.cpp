@@ -13,7 +13,7 @@ int main() {
         }
     }
 
-    const size_t maxIndex = board.size() - 1;
+    constexpr size_t maxIndex = board.size() - 1;
     const float top = board[maxIndex][0].getPosition().y;
     const float bottom = top + Orb::RADIUS * 2;
     const float right = board[maxIndex][board[maxIndex].size() - 1].getPosition().x + Orb::RADIUS * 2;
@@ -54,10 +54,8 @@ int main() {
         }
 
         /* Loop circles using custom class */
-        for (size_t y = 0; y < board.size(); y++) {
-            auto& row = board[y];
-            for (size_t x = 0; x < row.size(); x++) {
-                Orb& orb = row[x];
+        for (auto& row : board) {
+            for (auto& orb : row) {
                 window.draw(orb);
             }
         }
@@ -93,7 +91,7 @@ int main() {
                         burst->burst();
                         window.draw(*burst);
                     }
-                    size_t x = burst->getX();
+                    const size_t x = burst->getX();
                     burst = x < board[orb->getY()].size() - 1 ? &board[orb->getY()][x + 1] : nullptr;
                 } while (burst && burst->color() == color);
             }

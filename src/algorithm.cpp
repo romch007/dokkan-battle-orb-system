@@ -3,8 +3,8 @@
 void dfs(const Board& board, const Orb* orb, const sf::Color color, std::vector<const Orb*>& currentPath, std::vector<const Orb*>& longestPath) {
     if (!orb) return;
 
-    size_t x = orb->getX();
-    size_t y = orb->getY();
+    const size_t x = orb->getX();
+    const size_t y = orb->getY();
     if (orb->color() != Color::RAINBOW && orb->color() != color)
         return;
 
